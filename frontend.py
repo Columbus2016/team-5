@@ -157,12 +157,12 @@ def message_route():
             cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
             return redirect(url_for('frontend.messages'))
 
-
+    cursor.execute("SELECT * FROM ForumMessages WHERE '1=1'")
     message_list = []
     db_values = cursor.fetchall()
     for message in db_values:
-        cursor.execute("SELECT firstname FROM User WHERE userID =" + message['userID'])
-        name = cursor.fetchone()
+        cursor.execute("SELECT firstname FROM User WHERE userID =" + str(message['userID']))
+        name = cursor.fetchone()['firstname']
         message_list.append({
             'message': message['fMessageText'],
             'message_ID': message['fMessageID'],
