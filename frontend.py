@@ -49,7 +49,24 @@ def user_route():
         if 'username' in session and session['username'] == username:
             return render_template('user.html')
 
-        
+    elif request.method == 'POST':
+        id = request.form.get('id')
+        field = request.form.get('field')
+        data = request.form.get('data')
+
+        # vulnerable to sql injection!
+        cursor.execute("SELECT username FROM User WHERE userID='" + id + "'")
+
+        username = cursor.fetchone()
+        if 'username' in session and session['username'] == username:
+
+            # update info
+            cursor.execute("UPDATE User SET " + field + "= '" + data + "' WHERE userID='" + id + "'")
+
+            #return new user page
+            return render_template('user.html')
+
+
     # incorrect user! Redirect
     return redirect(url_for('login.route'))
 
@@ -60,8 +77,9 @@ def signup_route():
     form = SignupForm()
 
     if form.validate_on_submit():
-        cursor.execute('INSERT INTO User firstname, lastname, email, location, age, diagnosis, community, private, searchable, bio' +
-                       ' VALUES()')
+
+        # TODO
+        cursor.execute('INSERT INTO User firstname, lastname, email, location, age, diagnosis, community, private, searchable, bio' +' VALUES()')
         return redirect(url_for('.login'))
 
     return render_template('signup.html', form=form)
