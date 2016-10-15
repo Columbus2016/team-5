@@ -1,43 +1,50 @@
 create table User
-(userID int,  
+(userID int,
 firstname varchar(30), 
 lastname varchar(30), 
 email varchar(30),
 location int,
 age int,
 optin bool,
-photoID BLOB,
 bio varchar (100)
 );
-drop table dbo.User
 
-ALTER TABLE dbo.User
-ADD PRIMARY KEY (userID)
-
-alter table dbo.User add column userID
+ALTER TABLE User
+ADD PRIMARY KEY (userID);
 
 INSERT INTO User values (123, 'Lisa', 'Truong', 'abc@yahoo.com', 41844, 22, True, 11, 'hey, I am Lisa');
 INSERT INTO User values (124, 'Sona', 'Jeswani', 'abcd@yahoo.com', 95746, 19, False, 10, 'hey, I am Sona');
 
-create table dbo.Connections
-(foreign key(userID1) REFERENCES USER(userID),
-foreign key(userID2) REFERENCES USER(userID)
+create table Connections
+(userID1 int,
+userID2 int
 );
+
+ALTER TABLE Connections
+ADD FOREIGN KEY (userID1) REFERENCES USER(userID);
+
+ALTER TABLE Connections
+ADD FOREIGN KEY (userID2) REFERENCES USER(userID);
 
 create table ForumMessages
 (fMessageText varchar(255),
-primary key(fMessageID),
-foreign key(user_ID) REFERENCES USER(user_ID),
-`date` DateTime);
+ fMessageID int,
+ userID int,
+ date DateTime);
+
+ALTER TABLE ForumMessages
+ADD FOREIGN KEY (userID) REFERENCES USER(userID);
+
+ALTER TABLE ForumMessages
+ADD PRIMARY KEY (fMessageID);
 
 create table Comments 
-(foreign key(userID1) REFERENCES USER(userID),
-foreign key(fMessageText) REFERENCES USER(user_ID));
+(userID int,
+commentText VARCHAR(255),
+fMessageID int);
 
-create table DirectMessages
-(dMessageText varchar(255),
-foreign key(toID) REFERENCES USER(userID),
-foreign key(fromID) REFERENCES USER(userID),
-`date` DateTime);
+ALTER TABLE Comments
+ADD FOREIGN KEY (userID) REFERENCES USER(userID);
 
-select * from User
+ALTER TABLE Comments
+ADD FOREIGN KEY (fMessageID) REFERENCES ForumMessages(fMessageID);
