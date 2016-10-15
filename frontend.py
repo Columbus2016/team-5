@@ -14,11 +14,12 @@ from wtforms import Form, TextField, BooleanField, PasswordField, TextAreaField,
 from .forms import *
 from .nav import nav
 import hashlib
+from extensions import db
 
-import MySQLdb as mdb
-con = mdb.connect('localhost', 'root', 'root', 'boo')
+#import MySQLdb as mdb
+#con = mdb.connect('localhost', 'root', 'root', 'boo')
 frontend = Blueprint('frontend', __name__)
-cursor = con.cursor()
+cursor = db.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -103,6 +104,12 @@ def login_route():
 
 
     return render_template('login.html', form=form)
+
+@frontend.route('/messages', methods=['GET', 'POST'])
+def message_route():
+    return render_template('forum2.html')
+
+
 
 
 

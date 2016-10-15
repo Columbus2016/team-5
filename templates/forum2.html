@@ -4,32 +4,67 @@
 
 <meta http-equiv="Content-type" content="text/html; charset=utf-8"/> <meta http-equiv="Cache-control" content="private"/> <meta name="p:domain_verify" content="d4da0a1b6e96291963d5e68049568fe9"/> <meta content="authenticity_token" name="csrf-param"/> <meta content="xC7Pdexm2eFOLZMcmNzGixkkl/vFPE041Xooj9FRTnU=" name="csrf-token"/> 
 
-<link href="forum2-style.css" media="screen" rel="stylesheet" type="text/css"/> 
+<link href="{{url_for('static', filename='forum2-style.css')}}" media="screen" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+     <link href="{{ url_for('static', filename='css/grayscale.min.css') }}" rel="stylesheet">
 <!-- <link href="/assets/tenx/home-d03029341c67e6841f9301e5edf28612.css" media="screen" rel="stylesheet" type="text/css"/> 
 <link href="/assets/tenx/feed-5b62c4815acc62afa27ff5aa66e57703.css" media="screen" rel="stylesheet" type="text/css"/> <meta name="viewport" content="width=device-width, user-scalable=0"/>  -->
 
-<title>Komen Connect | Forums</title> <link rel="icon" type="image/png" href="/tenx/favicon.png"> <link rel="apple-touch-icon" type="image/png" href="/tenx/favicon.png"> <script src="/assets/tenx_profiles/main-29b4282b0ef01392af2cc4f99e8b7c21.js" type="text/javascript"></script> <script>var oldReady=$.fn.ready;$.fn.ready=function(e){oldReady(function(){try{e&&e.call(this)}catch(n){TenX.airbrakeReport(n)}})};</script> 
+<title>Assembled | The Most Talented Young People in Technology</title> <link rel="icon" type="image/png" href="/tenx/favicon.png"> <link rel="apple-touch-icon" type="image/png" href="/tenx/favicon.png"> <script src="/assets/tenx_profiles/main-29b4282b0ef01392af2cc4f99e8b7c21.js" type="text/javascript"></script> <script>var oldReady=$.fn.ready;$.fn.ready=function(e){oldReady(function(){try{e&&e.call(this)}catch(n){TenX.airbrakeReport(n)}})};</script> 
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <a href="https://youtu.be/dJzYJXo6WZQ"><i class="fa fa-play-circle"></i> <span class="light">Watch</span>
+                    </a>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li style="color:lightpink;">
+                        <a class="page-scroll" href={{ url_for('frontend.login_route') }}>Login</a>
+                    </li>
+                    <li style="color:lightpink;">
+                        <a class="page-scroll" href={{ url_for('frontend.signup_route') }}>Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 <div id="DIV_1">
 	<div id="DIV_2">
 		<div id="DIV_3">
 			<ul id="UL_4">
 				<li id="LI_5">
-					All Boards Combined
+					All Communities 
 				</li>
 				<li id="LI_6">
-					Assembled Women
+					My Connections
 				</li>
 				<li id="LI_7">
-					Assembled All-Gender
+					Similar Interests
 				</li>
 			</ul>
 		</div>
 		<div id="DIV_8">
 			<div id="DIV_9">
-				 <a href="#" id="A_10">Post</a> <span id="SPAN_11">Ask a question or share a story, article, event...</span>
+				 <a href="#" id="A_10">Post</a> <span id="SPAN_11">Share your stories, experiences and positive thoughts...</span>
 			</div>
 			<div id="DIV_12">
 				<a id="A_13"></a>
@@ -85,7 +120,7 @@
 								</textarea> <span id="SPAN_57">Cancel</span><span id="SPAN_58">Done</span>
 							</li>
 						</ul>
-					</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56aaa3c15d1609caf5000024_medium.jpg?1454023616" id="IMG_59" alt='' /> <span id="SPAN_60">Advocate for access to better mammograms! <span id="SPAN_61"> <a href="/stories/57fa5788b412b5778a000001" id="A_62">Oct 09</a></span></span> <span id="SPAN_63"> <a href="/56a9402e84c5b7428e0000a8" id="A_64">Arundhyoti Sarkar</a> Purdue University</span> <span id="SPAN_65">Hi Everyone,<br id="BR_66" /><br id="BR_67" /> For members not diagnosed with breast cancer, but waiting for test results:  Biopsy, mammogram, ultrasound, or other screening tests. Waiting is VERY difficult but remember... <a href="#" id="A_68">Read More</a></span> <span id="SPAN_69"> <a href="#" id="A_70">Upvote<span id="SPAN_71"></span></a> <a href="#" id="A_72">reply</a> <span id="SPAN_73"><span id="SPAN_74">Posted to Forum: Waiting for Test Results</span></span></span>
+					</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56aaa3c15d1609caf5000024_medium.jpg?1454023616" id="IMG_59" alt='' /> <span id="SPAN_60">Experience with Entry level data scientist interview process <span id="SPAN_61"> <a href="/stories/57fa5788b412b5778a000001" id="A_62">Oct 09</a></span></span> <span id="SPAN_63"> <a href="/56a9402e84c5b7428e0000a8" id="A_64">Arundhyoti Sarkar</a> Purdue University</span> <span id="SPAN_65">Hi Everyone,<br id="BR_66" /><br id="BR_67" /> I have an interview for entry level data scientist position. The HR has not specified what kind of questions will be asked. She just mentioned it is a normal data science interview. The job description mentions few... <a href="#" id="A_68">Read More</a></span> <span id="SPAN_69"> <a href="#" id="A_70">Upvote<span id="SPAN_71"></span></a> <a href="#" id="A_72">reply</a> <span id="SPAN_73"><span id="SPAN_74">Posted to All-Gender Students &amp; Professionals</span></span></span>
 					<div id="DIV_75">
 						<ul id="UL_76">
 							<li id="LI_77">
@@ -222,269 +257,6 @@
 							<li id="LI_227">
 								<textarea placeholder="Add your reply..." id="TEXTAREA_228">
 								</textarea> <a href="#" id="A_229">Add</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div id="DIV_230">
-				<div id="DIV_231">
-					<div id="DIV_232">
-						<div id="DIV_233">
-							<span id="SPAN_234">Kosi Uzodinma</span>
-						</div>
-						<div id="DIV_235">
-						</div>
-						<div id="DIV_236">
-							Deloitte ITS Intern; General Mills App Developer Intern; MLT Fellow; Minority In Tech Founder.
-						</div> <a href="/network/572c08a83ed3b425dd0000e4/assemble" id="A_237">Assemble<span id="SPAN_238">d!</span></a>
-						<ul id="UL_239">
-							<li id="LI_240">
-								 <span id="SPAN_241">Interesting</span><span id="SPAN_242">I don’t know him but he seems interesting!</span>
-							</li>
-							<li id="LI_243">
-								 <span id="SPAN_244">School</span><span id="SPAN_245">I know him from school.</span>
-							</li>
-							<li id="LI_246">
-								 <span id="SPAN_247">Company</span><span id="SPAN_248">I know him from working at the same company.</span>
-							</li>
-							<li id="LI_249">
-								 <span id="SPAN_250">Other</span><span id="SPAN_251">I know him from something else.</span>
-							</li>
-							<li id="LI_252">
-								<textarea placeholder="To assemble him, tell him why. (This helps to establish strong connections.)" id="TEXTAREA_253">
-								</textarea> <span id="SPAN_254">Cancel</span><span id="SPAN_255">Done</span>
-							</li>
-						</ul>
-					</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/572d381b5f7ec00747000001_medium.jpg?1462581274" id="IMG_256" alt='' /> <span id="SPAN_257">Internships &amp; Sponsorships <span id="SPAN_258"> <a href="/stories/57eb228e178382870c000002" id="A_259">Sep 27</a></span></span> <span id="SPAN_260"> <a href="/572c08a83ed3b425dd0000e4" id="A_261">Kosi Uzodinma</a> The University of Georgia</span> <span id="SPAN_262">Hi,<br id="BR_263" /><br id="BR_264" /> I am apart of a startup a company that helps student clubs raise money and provide jobs/internships for there members. Help me raise $450 by signing up on the link below. All you need to put in is your first &amp; last name... <a href="#" id="A_265">Read More</a></span> <span id="SPAN_266"> <a href="https://www.doorofclubs.com/join/minorities-in-tech" id="A_267"><img src="https://www.doorofclubs.com/images/homepage/landing.jpg" id="IMG_268" alt='' /></a></span>
-					<h3 id="H3_269">
-						Door of Clubs
-					</h3> <span id="SPAN_270"> <a href="#" id="A_271">Upvote<span id="SPAN_272"></span></a> <a href="#" id="A_273">reply</a> <span id="SPAN_274"><span id="SPAN_275">Posted to All-Gender Students &amp; Professionals</span></span></span>
-					<div id="DIV_276">
-						<ul id="UL_277">
-							<li id="LI_278">
-								<textarea placeholder="Add your reply..." id="TEXTAREA_279">
-								</textarea> <a href="#" id="A_280">Add</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div id="DIV_281">
-				<div id="DIV_282">
-					<div id="DIV_283">
-						<div id="DIV_284">
-							<span id="SPAN_285">Rachel Frenkel</span>
-						</div>
-						<div id="DIV_286">
-						</div>
-						<div id="DIV_287">
-							Graduated Computer Science major at Tufts University, looking for a software developer job in San Francisco. Frontend Web Developer Intern, Full Stack Web Developer Intern;
-						</div> <a href="/network/56a1351b3ed3b41d8300002f/assemble" id="A_288">Assemble<span id="SPAN_289">d!</span></a>
-						<ul id="UL_290">
-							<li id="LI_291">
-								 <span id="SPAN_292">Interesting</span><span id="SPAN_293">I don’t know her but she seems interesting!</span>
-							</li>
-							<li id="LI_294">
-								 <span id="SPAN_295">School</span><span id="SPAN_296">I know her from school.</span>
-							</li>
-							<li id="LI_297">
-								 <span id="SPAN_298">Company</span><span id="SPAN_299">I know her from working at the same company.</span>
-							</li>
-							<li id="LI_300">
-								 <span id="SPAN_301">Other</span><span id="SPAN_302">I know her from something else.</span>
-							</li>
-							<li id="LI_303">
-								<textarea placeholder="To assemble her, tell her why. (This helps to establish strong connections.)" id="TEXTAREA_304">
-								</textarea> <span id="SPAN_305">Cancel</span><span id="SPAN_306">Done</span>
-							</li>
-						</ul>
-					</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56ac34a2544fe09790000001_medium.jpg?1454126242" id="IMG_307" alt='' /> <span id="SPAN_308">San Francisco -- outdoor, fitness, travel company suggestions? <span id="SPAN_309"> <a href="/stories/57e9059db412b54241000001" id="A_310">Sep 26</a></span></span> <span id="SPAN_311"> <a href="/56a1351b3ed3b41d8300002f" id="A_312">Rachel Frenkel</a> Tufts University</span> <span id="SPAN_313">I moved to SF to work either as a web developer or a PM. I'm hoping for a company specializing in outdoors/fitness, or travel/events (but obviously am very flexible on this, just a cool product!). The problem is I'm having trouble finding those companies to apply to outside of the big names -- any suggestions?</span> <span id="SPAN_314"> <a href="#" id="A_315">Upvote<span id="SPAN_316"></span></a> <a href="#" id="A_317">reply</a> <span id="SPAN_318"><span id="SPAN_319">Posted to All-Gender Students &amp; Professionals</span></span></span>
-					<div id="DIV_320">
-						<ul id="UL_321">
-							<li id="LI_322">
-								<textarea placeholder="Add your reply..." id="TEXTAREA_323">
-								</textarea> <a href="#" id="A_324">Add</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div id="DIV_325">
-				<div id="DIV_326">
-					<div id="DIV_327">
-						<div id="DIV_328">
-							<span id="SPAN_329">Aishni Parab</span>
-						</div>
-						<div id="DIV_330">
-						</div>
-						<div id="DIV_331">
-							Learning Technologies Lab Consultant at Information Technology Services, UCSC. Undergraduate Researcher at Long Marine Lab.
-						</div> <a href="/network/55f470123ed3b441ee000117/assemble" id="A_332">Assemble<span id="SPAN_333">d!</span></a>
-						<ul id="UL_334">
-							<li id="LI_335">
-								 <span id="SPAN_336">Interesting</span><span id="SPAN_337">I don’t know her but she seems interesting!</span>
-							</li>
-							<li id="LI_338">
-								 <span id="SPAN_339">School</span><span id="SPAN_340">I know her from school.</span>
-							</li>
-							<li id="LI_341">
-								 <span id="SPAN_342">Company</span><span id="SPAN_343">I know her from working at the same company.</span>
-							</li>
-							<li id="LI_344">
-								 <span id="SPAN_345">Other</span><span id="SPAN_346">I know her from something else.</span>
-							</li>
-							<li id="LI_347">
-								<textarea placeholder="To assemble her, tell her why. (This helps to establish strong connections.)" id="TEXTAREA_348">
-								</textarea> <span id="SPAN_349">Cancel</span><span id="SPAN_350">Done</span>
-							</li>
-						</ul>
-					</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/566620e05d16094a5000000a_medium.jpg?1449533663" id="IMG_351" alt='' /> <span id="SPAN_352">Graduating in Fall 2017. What do I do until grad school intake in Fall 2018? <span id="SPAN_353"> <a href="/stories/57d7a38db412b52aa5000003" id="A_354">Sep 13</a></span></span> <span id="SPAN_355"> <a href="/55f470123ed3b441ee000117" id="A_356">Aishni Parab</a> University of California, Santa Cruz</span> <span id="SPAN_357">Do tech companies offer internships in winter and spring? I will be graduating in Fall and I'm not sure what I'll be doing until Fall 2018 (when I plan to enter a graduate program). I want to plan ahead so that I'm not lost. I'm on an F-1 visa so I'm not sure if I will be asked to go back. My major is Computer Science (UC Santa Cruz). Please advice :)</span> <span id="SPAN_358"> <a href="#" id="A_359">Upvote<span id="SPAN_360"></span></a> <a href="#" id="A_361">reply</a> <span id="SPAN_362"><span id="SPAN_363">Posted to All-Gender Students &amp; Professionals</span></span></span>
-					<div id="DIV_364">
-						 <a href="#" id="A_365"> <span id="SPAN_366">1</span> previous Replies</a>
-						<ul id="UL_367">
-							<li id="LI_368">
-								<div id="DIV_369">
-									<div id="DIV_370">
-										<span id="SPAN_371">Heather Fleming</span>
-									</div>
-									<div id="DIV_372">
-									</div>
-									<div id="DIV_373">
-										Immunologist/Editor building networking groups to help lead, mentor, communicate, and develop professional scientists - young and 'old'. UToronto/MGH/Harvard/MIT/CellPress/HHMI.
-									</div> <a href="/network/56a7eeaf84c5b7bd2f000098/assemble" id="A_374">Assemble<span id="SPAN_375">d!</span></a>
-									<ul id="UL_376">
-										<li id="LI_377">
-											 <span id="SPAN_378">Interesting</span><span id="SPAN_379">I don’t know her but she seems interesting!</span>
-										</li>
-										<li id="LI_380">
-											 <span id="SPAN_381">School</span><span id="SPAN_382">I know her from school.</span>
-										</li>
-										<li id="LI_383">
-											 <span id="SPAN_384">Company</span><span id="SPAN_385">I know her from working at the same company.</span>
-										</li>
-										<li id="LI_386">
-											 <span id="SPAN_387">Other</span><span id="SPAN_388">I know her from something else.</span>
-										</li>
-										<li id="LI_389">
-											<textarea placeholder="To assemble her, tell her why. (This helps to establish strong connections.)" id="TEXTAREA_390">
-											</textarea> <span id="SPAN_391">Cancel</span><span id="SPAN_392">Done</span>
-										</li>
-									</ul>
-								</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56e1ea5492c6ac07cd000036_small.jpg?1457646162" id="IMG_393" alt='' /> <span id="SPAN_394"> <a href="/56a7eeaf84c5b7bd2f000098" id="A_395">Heather Fleming</a> Director, Research Operations at Laboratory for Multiscale Regenerative Technologies - Massachusetts Institute of Technology <span id="SPAN_396">Sep 20</span></span> <span id="SPAN_397">you could also be a competitive applicant to work in an academic biotechnology or bioengineering lab - there are often computational projects going on that would benefit from a computer scientist's I out and... <a href="#" id="A_398">Read More</a></span> <span id="SPAN_399"> <a id="A_400">Upvote</a></span>
-								<sp id="SP_401">
-								</sp> <a id="A_402">Reply</a>
-							</li>
-							<li id="LI_403">
-								<div id="DIV_404">
-									<div id="DIV_405">
-										<span id="SPAN_406">Harshita Kasera</span>
-									</div>
-									<div id="DIV_407">
-									</div>
-									<div id="DIV_408">
-										Graduate Student at University of Southern California | Android Nanodegree Student @ Udacity | Google Summer of Code 2016 Mentor.
-									</div> <a href="/network/56b0617e5d16093c5d00001e/assemble" id="A_409">Assemble<span id="SPAN_410">d!</span></a>
-									<ul id="UL_411">
-										<li id="LI_412">
-											 <span id="SPAN_413">Interesting</span><span id="SPAN_414">I don’t know her but she seems interesting!</span>
-										</li>
-										<li id="LI_415">
-											 <span id="SPAN_416">School</span><span id="SPAN_417">I know her from school.</span>
-										</li>
-										<li id="LI_418">
-											 <span id="SPAN_419">Company</span><span id="SPAN_420">I know her from working at the same company.</span>
-										</li>
-										<li id="LI_421">
-											 <span id="SPAN_422">Other</span><span id="SPAN_423">I know her from something else.</span>
-										</li>
-										<li id="LI_424">
-											<textarea placeholder="To assemble her, tell her why. (This helps to establish strong connections.)" id="TEXTAREA_425">
-											</textarea> <span id="SPAN_426">Cancel</span><span id="SPAN_427">Done</span>
-										</li>
-									</ul>
-								</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56be24bd3ed3b433f6000001_small.jpg?1455301821" id="IMG_428" alt='' /> <span id="SPAN_429"> <a href="/56b0617e5d16093c5d00001e" id="A_430">Harshita Kasera</a> Software Development Engineer II - Mobile at Flipkart <span id="SPAN_431">Sep 24</span></span> <span id="SPAN_432">Not sure if this is applicable but you can check this - <a href="https://wiki.gnome.org/Outreachy" id="A_433">https:/</a></span>
-								<wbr id="WBR_434" />/
-								<wbr id="WBR_435" />wiki.gnome.org/
-								<wbr id="WBR_436" />Outreachy <span id="SPAN_437"> <a id="A_438">Upvote</a></span>
-								<sp id="SP_439">
-								</sp> <a id="A_440">Reply</a>
-							</li>
-							<li id="LI_441">
-								<textarea placeholder="Add your reply..." id="TEXTAREA_442">
-								</textarea> <a href="#" id="A_443">Add</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div id="DIV_444">
-				<div id="DIV_445">
-					<div id="DIV_446">
-						<div id="DIV_447">
-							<span id="SPAN_448">Abby Clem</span>
-						</div>
-						<div id="DIV_449">
-						</div>
-						<div id="DIV_450">
-							Intern at Hughes Consulting and TK Architects. Studying Architectural Engineering at University of Kansas, 3.36 GPA. Vice President of Engineers Without Borders.
-						</div> <a href="/network/56a7e70c3ed3b4057f00027f/assemble" id="A_451">Assemble<span id="SPAN_452">d!</span></a>
-						<ul id="UL_453">
-							<li id="LI_454">
-								 <span id="SPAN_455">Interesting</span><span id="SPAN_456">I don’t know her but she seems interesting!</span>
-							</li>
-							<li id="LI_457">
-								 <span id="SPAN_458">School</span><span id="SPAN_459">I know her from school.</span>
-							</li>
-							<li id="LI_460">
-								 <span id="SPAN_461">Company</span><span id="SPAN_462">I know her from working at the same company.</span>
-							</li>
-							<li id="LI_463">
-								 <span id="SPAN_464">Other</span><span id="SPAN_465">I know her from something else.</span>
-							</li>
-							<li id="LI_466">
-								<textarea placeholder="To assemble her, tell her why. (This helps to establish strong connections.)" id="TEXTAREA_467">
-								</textarea> <span id="SPAN_468">Cancel</span><span id="SPAN_469">Done</span>
-							</li>
-						</ul>
-					</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56a93b45544fe0598e000008_medium.jpg?1453931329" id="IMG_470" alt='' /> <span id="SPAN_471">Year Off <span id="SPAN_472"> <a href="/stories/57e2d7ee178382560c000001" id="A_473">Sep 21</a></span></span> <span id="SPAN_474"> <a href="/56a7e70c3ed3b4057f00027f" id="A_475">Abby Clem</a> The University of Kansas</span> <span id="SPAN_476">I am graduating this Spring and know what I career I want to pursue, but would like to take a year off before work to hike the Appalachian Trail (7 months) and travel before beginning my career. Is this a terrible idea? Will employers be very against the idea?</span> <span id="SPAN_477"> <a href="#" id="A_478">Upvote<span id="SPAN_479"></span></a> <a href="#" id="A_480">reply</a> <span id="SPAN_481"><span id="SPAN_482">Posted to All-Gender Students &amp; Professionals</span></span></span>
-					<div id="DIV_483">
-						<ul id="UL_484">
-							<li id="LI_485">
-								<div id="DIV_486">
-									<div id="DIV_487">
-										<span id="SPAN_488">Heather Fleming</span>
-									</div>
-									<div id="DIV_489">
-									</div>
-									<div id="DIV_490">
-										Immunologist/Editor building networking groups to help lead, mentor, communicate, and develop professional scientists - young and 'old'. UToronto/MGH/Harvard/MIT/CellPress/HHMI.
-									</div> <a href="/network/56a7eeaf84c5b7bd2f000098/assemble" id="A_491">Assemble<span id="SPAN_492">d!</span></a>
-									<ul id="UL_493">
-										<li id="LI_494">
-											 <span id="SPAN_495">Interesting</span><span id="SPAN_496">I don’t know her but she seems interesting!</span>
-										</li>
-										<li id="LI_497">
-											 <span id="SPAN_498">School</span><span id="SPAN_499">I know her from school.</span>
-										</li>
-										<li id="LI_500">
-											 <span id="SPAN_501">Company</span><span id="SPAN_502">I know her from working at the same company.</span>
-										</li>
-										<li id="LI_503">
-											 <span id="SPAN_504">Other</span><span id="SPAN_505">I know her from something else.</span>
-										</li>
-										<li id="LI_506">
-											<textarea placeholder="To assemble her, tell her why. (This helps to establish strong connections.)" id="TEXTAREA_507">
-											</textarea> <span id="SPAN_508">Cancel</span><span id="SPAN_509">Done</span>
-										</li>
-									</ul>
-								</div><img src="https://s3.amazonaws.com/lal-production/cover_photo/56e1ea5492c6ac07cd000036_small.jpg?1457646162" id="IMG_510" alt='' /> <span id="SPAN_511"> <a href="/56a7eeaf84c5b7bd2f000098" id="A_512">Heather Fleming</a> Director, Research Operations at Laboratory for Multiscale Regenerative Technologies - Massachusetts Institute of Technology <span id="SPAN_513">Sep 22</span></span> <span id="SPAN_514">i think it depends a lot on your field, and the kind of employer you plan to look for. i'm in the academic world, and I am pretty confident that most places would be fine with that sort of a 'gap year'. I think the trick would... <a href="#" id="A_515">Read More</a></span> <span id="SPAN_516"> <a id="A_517">Upvote</a></span>
-								<sp id="SP_518">
-								</sp> <a id="A_519">Reply</a>
-							</li>
-							<li id="LI_520">
-								<textarea placeholder="Add your reply..." id="TEXTAREA_521">
-								</textarea> <a href="#" id="A_522">Add</a>
 							</li>
 						</ul>
 					</div>
@@ -649,28 +421,6 @@
 		</div>
 	</div>
 	<div id="DIV_699">
-		<div id="DIV_700">
-			<a href="/Lisa-Truong-wellesley" id="A_701"></a>
-			<div id="DIV_702">
-			</div>
-			<div id="DIV_703">
-				Lisa Truong <span id="SPAN_704">View My Profile</span>
-			</div>
-		</div>
-		<div id="DIV_705">
-			<div id="DIV_706">
-				<span id="SPAN_707"></span> <span id="SPAN_708">Complete your profile</span>
-			</div>
-			<div id="DIV_709">
-				<span id="SPAN_710"></span> <span id="SPAN_711">Make your first comment</span>
-			</div>
-			<div id="DIV_712">
-				<a href="/network?no_game=1" id="A_713"></a><span id="SPAN_714"></span> <span id="SPAN_715">Assemble<span id="SPAN_716"></span> members</span>
-			</div>
-			<div id="DIV_717">
-				<a href="/network?link=networking_game" id="A_718"></a><span id="SPAN_719"></span> <span id="SPAN_720">Answer at least<span id="SPAN_721"></span> networking questions</span>
-			</div>
-		</div>
 		<ul id="UL_722">
 			<a href="/network" id="A_723"></a>
 			<li id="LI_724">
