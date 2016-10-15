@@ -41,5 +41,11 @@
 
 {# Finally, round things out with navigation #}
 {% block navbar %}
+    {% if 'username' not in session %}
 {{nav.frontend_top.render()}}
+    {% endif %}
+        {% if 'username' in session %}
+{{nav.frontend_top_logged.render()}}
+    {% endif %}
+
 {% endblock %}

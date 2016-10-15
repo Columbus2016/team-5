@@ -5,9 +5,9 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template, flash, redirect, url_for, session, request
+from flask import Blueprint,  flash, redirect, url_for, session
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
-from flask import Flask, render_template, request
+from flask import render_template, request
 
 from .forms import *
 from .nav import nav
@@ -21,7 +21,15 @@ cursor = db.cursor()
 nav.register_element('frontend_top', Navbar(
     View('Home', '.index'),
     View('Signup', '.signup_route'),
-    View('Login', '.login_route')
+    View('Login', '.login_route'),
+
+))
+
+nav.register_element('frontend_top_logged', Navbar(
+    View('Home', '.index'),
+    View('Messages', '.message_route'),
+    View('Profile', '.user_route'),
+
 ))
 
 
@@ -29,6 +37,7 @@ nav.register_element('frontend_top', Navbar(
 # "templates/index.html" documentation for more details.
 @frontend.route('/')
 def index():
+    session.clear()
     return render_template('index.html')
 
 
@@ -171,7 +180,7 @@ def login_route():
 
 @frontend.route('/messages', methods=['GET', 'POST'])
 def message_route():
-    return render_template('forum2.html')
+    return render_template('forum3.html')
 
 
 
