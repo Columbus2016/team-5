@@ -1,16 +1,16 @@
-from flask_wtf import Form
+from flask.ext.wtf import Form
 from wtforms.fields import *
-from wtforms.validators import Required, Email
-
+from wtforms.validators import Required, Email, InputRequired
+from wtforms import TextField, TextAreaField, SubmitField, validators, ValidationError, IntegerField, BooleanField
 
 class SignupForm(Form):
     firstname = StringField(u'First Name')
     lastname = StringField(u'Last Name')
     password = PasswordField(u'Password')
     email = StringField(u'Your email address')
-    age = IntegerField(u'Age')
+    age = StringField(u'Age')
     gender = RadioField(u'Gender', choices=[('Male', 'male'), ('Female', 'female')])
-    zipcode = IntegerField(u'Zip Code (so we can connect you with nearby users!)')
+    zipcode = StringField(u'Zip Code (so we can connect you with nearby users!)')
     community = SelectField(u'Cancer Community', choices=[('survivor', 'Survivor'), ('cosurvivor', 'Co-Survivor'), ('metastatic', 'Metastatic')])
     diagnosis = SelectField(u'Cancer Diagnosis', choices=[('none', 'None'),
                                                           ('DCIS', 'Ductal Carcinoma In Situ'),
@@ -31,15 +31,9 @@ class SignupForm(Form):
                                                           ])
     bio = StringField(u'Short Bio')
 
-    sample_file = FileField(u'Upload a Profile Picture!')
-
-    private = BooleanField(u'I agree to let my personal data be released for research purposes',)
-
-    searchable = BooleanField(u'I want to be searchable to other users',)
-
     submit = SubmitField(u'Signup')
 
 class LoginForm(Form):
     email = StringField(u'Your email address', validators=[Email()])
-    password = PasswordField(u'Password', validators=[Required()])
+    password = PasswordField(u'Password', validators=[InputRequired()])
     submit = SubmitField(u'Signup')

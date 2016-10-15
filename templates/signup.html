@@ -4,7 +4,7 @@
 
 {% block content %}
    <div class="container">
-      <div class="jumbotron">
+      <div class="jumbotron" style="background-color: lightpink">
         <h1>Signup to start connecting!</h1>
       </div>
     </div>
@@ -15,5 +15,8 @@
        {{form|render_form()}}
      {%- endif %}
    </div>
+    {% if error == 1 %}
+        <p class="error">Missing Forms</p>
+    {% endif %}
 
 {%- endblock %}
