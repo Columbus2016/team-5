@@ -120,12 +120,25 @@ def forum_route():
         cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
 
 
-    # need to add messages to options in the form of a list and pass it to forum.html
+    message_list = []
+    db_values = cursor.fetchall()
+    for message in db_values:
+        cursor.execute("SELECT firstname FROM User WHERE userID =" + message['userID'])
+        name = cursor.fetchone()
+        message_list.append({
+            'message': message['fMessageText'],
+            'message_ID': message['fMessageID'],
+            'name': name
+        })
+
+
+
+
     options = {
-        'messages': "nada"
+        'message_list': message_list
     }
 
-    return render_template('forum.html')
+    return render_template('forum.html', **options)
 
 # Shows a long signup form, demonstrating form rendering.
 @frontend.route('/signup', methods=('GET', 'POST'))
