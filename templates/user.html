@@ -3,19 +3,121 @@
 {%- extends "base.html" %}
 
 {% block content %}
-   <div class="container">
-      <div class="jumbotron">
-        <h1>Your Homepage</h1>
-      </div>
-       <table>
-           <tr><td>First Name</td></tr>
-           <tr><td>Last Name</td></tr>
-           <tr><td>Email</td></tr>
-           <tr><td>Cancer Community</td></tr>
-           <tr><td>Age</td></tr>
-           <tr><td>Gender</td></tr>
-           <tr><td>Member Group</td></tr>
-           <tr><td>Hobbies</td></tr>
-       </table>
+<style type="text/css">
+#ProfilePage
+{
+    /* Move it off the top of the page, then centre it horizontally */
+    margin: 50px auto;
+    width: 635px;
+}
+
+#LeftCol
+{
+    /* Move it to the left */
+    float: left;
+
+    width: 200px;
+    text-align: center;
+
+    /* Move it away from the content */
+    margin-right: 20px;
+
+    background-color: white;
+
+}
+
+#Photo
+{
+    /* Width and height of photo container */
+    width: 200px;
+    height: 200px;
+
+/* For visibility. Delete me */
+border: 1px solid green;
+}
+
+#PhotoOptions
+{
+    text-align: center;
+    width: 200px;
+
+}
+
+#Info
+{
+    width: 400px;
+    text-align: center;
+
+    /* Move it to the right */
+    float: right;
+
+    background-color: hotpink;
+
+}
+
+#Info strong
+{
+    /* Give it a width */
+    display: inline-block;
+    width: 100px;
+
+    background-color: pink;
+
+/* For visibility. Delete me */
+border: 1px solid orange;
+}
+
+#Info span
+{
+    /* Give it a width */
+    display: inline-block;
+    width: 250px;
+
+    background-color: whitesmoke;
+}
+body {
+    background-color: lightpink;
+}
+</style>
+
+<div id="ProfilePage">
+    <div id="LeftCol">
+        <img src="/static/images/sgk_logo1.png" alt="User Photo" height="200" width="200">
     </div>
+
+    <div id="Info">
+        <p>
+            <strong>Name:</strong>
+            <span>**Name**</span>
+        </p>
+        <p>
+            <strong>Email:</strong>
+            <span>**email**</span>
+        </p>
+        <p>
+            <strong>Age:</strong>
+            <span>**age**</span>
+        </p>
+        <p>
+            <strong>Gender:</strong>
+            <span>**gender**</span>
+        </p>
+        <p>
+            <strong>Community:</strong>
+            <span>**cc**</span>
+        </p>
+        <p>
+            <strong>Group:</strong>
+            <span>**group**</span>
+        </p>
+        <p>
+            <strong>Hobbies:</strong>
+            <span>**hobbies**</span>
+        </p>
+    </div>
+
+    <h1>About me...</h1>
+    <p>This is about me</p>
+    <div style="clear:both"></div>
+</div>
 {%- endblock %}

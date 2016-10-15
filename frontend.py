@@ -13,8 +13,11 @@ from markupsafe import escape
 
 from .forms import *
 from .nav import nav
+import hashlib
+from extensions import db
 
 frontend = Blueprint('frontend', __name__)
+cursor = db.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -51,10 +54,19 @@ def login_route():
     form = LoginForm()
     if form.validate_on_submit():
 
-        flash('Logged in successfully.')
-        session['username'] = form.email.data
+        # hash password for check against db
+        m = hashlib.md5()
+        m.update(form.password)
+        hashed_pass = m.hexdigest()
 
-        return redirect(url_for('.index'))
+        if hashed_pass == cursor.exicute("SELECT * FROM User WHERE email='" + form.email + "'").fetchone():
+
+            # login was good! Congrats
+            flash('Logged in successfully.')
+            session['username'] = form.email.data
+            return redirect(url_for('.messages'))
+
+    # login was bad :(
     return render_template('login.html', form=form)
 
 
