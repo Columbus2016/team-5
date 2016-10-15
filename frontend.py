@@ -14,10 +14,10 @@ from markupsafe import escape
 from .forms import *
 from .nav import nav
 import hashlib
-from extensions import db
+#from extensions import db
 
 frontend = Blueprint('frontend', __name__)
-cursor = db.cursor()
+#cursor = db.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
