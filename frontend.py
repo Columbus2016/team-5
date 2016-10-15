@@ -8,12 +8,9 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session, request
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
 from flask import Flask, render_template, request
-from flask.ext.wtf import Form
-from wtforms import Form, TextField, BooleanField, PasswordField, TextAreaField, validators
 
 from .forms import *
 from .nav import nav
-import hashlib
 from extensions import db
 frontend = Blueprint('frontend', __name__)
 cursor = db.cursor()
