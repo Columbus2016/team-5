@@ -110,48 +110,6 @@ def user_route():
     # incorrect user! Redirect
     return redirect(url_for('frontend.login_route'))
 
-
-@frontend.route('/forum', methods=('GET', 'POST'))
-def forum_route():
-    if request.method == 'POST':
-        userID = request.form.get('id')
-        message = request.form.get('message')
-        isPublic = request.form.get('isPublic')
-
-        cursor.execute("SELECT * FROM User WHERE userID='" + userID + "'")
-        if cursor.fetchone() != 1:
-            return redirect(url_for('frontend.login_route'))
-
-        # user number exits, so continue with the POST
-        messageID = abs(hash(message))
-
-        if not isPublic:
-            userID = -1
-
-
-        cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
-
-
-    message_list = []
-    db_values = cursor.fetchall()
-    for message in db_values:
-        cursor.execute("SELECT firstname FROM User WHERE userID =" + message['userID'])
-        name = cursor.fetchone()
-        message_list.append({
-            'message': message['fMessageText'],
-            'message_ID': message['fMessageID'],
-            'name': name
-        })
-
-
-
-
-    options = {
-        'message_list': message_list
-    }
-
-    return render_template('forum.html', **options)
-
 # Shows a long signup form, demonstrating form rendering.
 @frontend.route('/signup', methods=('GET', 'POST'))
 def signup_route():
@@ -183,7 +141,41 @@ def login_route():
 
 @frontend.route('/messages', methods=['GET', 'POST'])
 def message_route():
-    return render_template('forum3.html')
+    if request.method == 'POST':
+        userID = request.form.get('id')
+        message = request.form.get('message')
+        isPublic = request.form.get('isPublic')
+
+        cursor.execute("SELECT * FROM User WHERE userID='" + userID + "'")
+        if cursor.fetchone() != 1:
+            return redirect(url_for('frontend.login_route'))
+
+        # user number exits, so continue with the POST
+        messageID = abs(hash(message))
+
+        if not isPublic:
+            userID = -1
+
+
+        cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
+
+
+    message_list = []
+    db_values = cursor.fetchall()
+    for message in db_values:
+        cursor.execute("SELECT firstname FROM User WHERE userID =" + message['userID'])
+        name = cursor.fetchone()
+        message_list.append({
+            'message': message['fMessageText'],
+            'message_ID': message['fMessageID'],
+            'name': name
+        })
+
+    options = {
+        'message_list': message_list
+    }
+
+    return render_template('forum.html', **options)
 
 
 
