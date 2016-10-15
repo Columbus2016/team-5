@@ -49,6 +49,7 @@ def create_group():
 @frontend.route('/user', methods=('GET', 'POST'))
 def user_route():
 
+    # If GET request - no vars
     if request.method == 'GET':
 
         if 'username' not in session:
@@ -90,7 +91,7 @@ def user_route():
 
             return render_template('user.html', **options)
 
-    # never tested fully, intended for the user to change their information
+    # never tested fully, intended for the user to change their information **NEEDS WORK**
     elif request.method == 'POST':
         id = request.form.get('id')
         field = request.form.get('field')
@@ -99,6 +100,7 @@ def user_route():
         # vulnerable to sql injection!
         cursor.execute("SELECT username FROM User WHERE userID='" + id + "'")
 
+        # Check if username is in session
         username = cursor.fetchone()
         if 'username' in session and session['username'] == username:
 
@@ -122,11 +124,15 @@ def signup_route():
                        ' VALUES("' + form.firstname.data + '","' + form.lastname.data + '","' + form.email.data + '","' + form.password.data + '","'+ form.zipcode.data + '","' + form.age.data + '","' + form.diagnosis.data + '","' + form.community.data + '","' + form.bio.data + '","' + form.gender.data + '")')
         return redirect(url_for('frontend.login_route'))
 
+    # Render the create user page
     return render_template('signup.html', form=form)
 
+# Login route
 @frontend.route('/login', methods=['GET', 'POST'])
 def login_route():
     form = LoginForm()
+
+    # POST to login to website
     if request.method == 'POST':
         cursor.execute('SELECT password FROM User WHERE email="' + form.email.data + '"')
         password = cursor.fetchone()['password']
@@ -141,6 +147,7 @@ def login_route():
     print ("Login not validated!")
     return render_template('login.html', form=form)
 
+# Message board - shows messages from those in the community
 @frontend.route('/messages', methods=['GET', 'POST'])
 def message_route():
     if request.method == 'POST':
@@ -162,6 +169,8 @@ def message_route():
     cursor.execute("SELECT * FROM ForumMessages WHERE '1=1'")
     message_list = []
     db_values = cursor.fetchall()
+
+    # for each message, create one that can be easily used in the forum
     for message in db_values:
         cursor.execute("SELECT firstname FROM User WHERE userID =" + str(message['userID']))
         name = cursor.fetchone()['firstname']
