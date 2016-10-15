@@ -93,6 +93,10 @@ def user_route():
     return redirect(url_for('frontend.login_route'))
 
 
+@frontend.route('/forum', methods=('GET', 'POST'))
+def forum_route():
+    return render_template('forum.html')
+
 # Shows a long signup form, demonstrating form rendering.
 @frontend.route('/signup', methods=('GET', 'POST'))
 def signup_route():
