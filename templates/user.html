@@ -88,32 +88,32 @@ body {
     <div id="Info">
         <p>
             <strong>Name:</strong>
-            <span>{{ cursor.execute("SELECT firstname FROM User WHERE username='" + session.username + "'") }} {{ cursor.execute("SELECT lastname FROM User WHERE username='" + session.username + "'") }}</span>
+            <span>{{ name }}</span>
         </p>
         <p>
             <strong>Email:</strong>
-            <span>{{ cursor.execute("SELECT email FROM User WHERE username='" + session.username + "'") }}</span>
+            <span>{{ email }}</span>
         </p>
         <p>
             <strong>Age:</strong>
-            <span>{{ cursor.execute("SELECT age FROM User WHERE username='" + session.username + "'") }}</span>
+            <span>{{ age }}</span>
         </p>
         <p>
             <strong>Gender:</strong>
-            <span>{{ cursor.execute("SELECT gender FROM User WHERE username='" + session.username + "'") }}</span>
+            <span>{{ gender }}</span>
         </p>
         <p>
             <strong>Community:</strong>
-            <span>{{ cursor.execute("SELECT diagnosis FROM User WHERE username='" + session.username + "'") }}</span>
+            <span>{{ community }}</span>
         </p>
         <p>
             <strong>Group:</strong>
-            <span>{{ cursor.execute("SELECT community FROM User WHERE username='" + session.username + "'") }}</span>
+            <span>{{ group }}</span>
         </p>
     </div>
 
     <h1>About me...</h1>
-    <p>{{ cursor.execute("SELECT bio FROM User WHERE username='" + session.username + "'") }}</p>
+    <p>{{ bio }}</p>
     <div style="clear:both"></div>
 </div>
 {%- endblock %}

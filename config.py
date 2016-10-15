@@ -5,6 +5,6 @@ env = dict(
     host='localhost',
     user='root',
     password='root',
-    db='team5'
+    db='boo'
 )
 

@@ -15,9 +15,6 @@ from .forms import *
 from .nav import nav
 import hashlib
 from extensions import db
-
-#import MySQLdb as mdb
-#con = mdb.connect('localhost', 'root', 'root', 'boo')
 frontend = Blueprint('frontend', __name__)
 cursor = db.cursor()
 
@@ -46,14 +43,42 @@ def create_group():
 def user_route():
 
     if request.method == 'GET':
-        id = request.form.get('id')
 
-        # vulnerable to sql injection!
-        cursor.execute("SELECT username FROM User WHERE userID='" + id + "'")
+        if 'username' not in session:
+            # incorrect user! Redirect
+            return redirect(url_for('frontend.login_route'))
 
-        username = cursor.fetchone()
-        if 'username' in session and session['username'] == username:
-            return render_template('user.html')
+
+        if 'username' in session:
+
+            cursor.execute("SELECT firstname FROM User WHERE email='" + session['username'] + "'")
+            firstname = cursor.fetchone()['firstname']
+            cursor.execute("SELECT lastname FROM User WHERE email='" + session['username'] + "'")
+            lastname = cursor.fetchone()['lastname']
+            cursor.execute("SELECT email FROM User WHERE email='" + session['username'] + "'")
+            email = cursor.fetchone()['email']
+            cursor.execute("SELECT age FROM User WHERE email='" + session['username'] + "'")
+            age = cursor.fetchone()['age']
+            cursor.execute("SELECT gender FROM User WHERE email='" + session['username'] + "'")
+            gender = cursor.fetchone()['gender']
+            cursor.execute("SELECT diagnosis FROM User WHERE email='" + session['username'] + "'")
+            diagnosis = cursor.fetchone()['diagnosis']
+            cursor.execute("SELECT community FROM User WHERE email='" + session['username'] + "'")
+            community = cursor.fetchone()['community']
+            cursor.execute("SELECT bio FROM User WHERE email='" + session['username'] + "'")
+            bio = cursor.fetchone()['bio']
+
+            options = {
+                'name': firstname + ' ' + lastname,
+                'email': email,
+                'age': age,
+                'gender': gender,
+                'community': community,
+                'group': diagnosis,
+                'bio': bio,
+            }
+
+            return render_template('user.html', **options)
 
     elif request.method == 'POST':
         id = request.form.get('id')
@@ -74,7 +99,7 @@ def user_route():
 
 
     # incorrect user! Redirect
-    return redirect(url_for('login.route'))
+    return redirect(url_for('frontend.login_route'))
 
 
 # Shows a long signup form, demonstrating form rendering.
@@ -92,17 +117,18 @@ def signup_route():
 @frontend.route('/login', methods=['GET', 'POST'])
 def login_route():
     form = LoginForm()
-    if request.method == 'POST' and form.validate():
-
-        if form.password == cursor.exicute("SELECT password FROM User WHERE email='" + form.email + "'").fetchone():
+    if request.method == 'POST':
+        cursor.execute('SELECT password FROM User WHERE email="' + form.email.data + '"')
+        password = cursor.fetchone()['password']
+        if form.password.data == password:
 
             # login was good! Congrats
             flash('Logged in successfully.')
             session['username'] = form.email.data
-            print session['username']
-            return redirect(url_for('frontend.index'))
+            return redirect(url_for('frontend.user_route'))
 
 
+    print ("Login not validated!")
     return render_template('login.html', form=form)
 
 @frontend.route('/messages', methods=['GET', 'POST'])
