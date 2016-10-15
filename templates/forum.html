@@ -139,7 +139,7 @@ https://media.licdn.com/media/AAEAAQAAAAAAAAc5AAAAJGMxZDExNTFhLWI1YmQtNDFmZi05NW
           <div class="w3-card-2 w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity"></h6>
-                <form method="POST" action="/messages">
+                <form method="POST" action={{url_for('frontend.message_route'}}>
                     Share your stories, experiences and positive thoughts...<br>
                     <input type="text" class="w3-border w3-padding" name="message">
                     <button type="button" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> &nbsp;Post</button>
