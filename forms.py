@@ -21,3 +21,8 @@ class SignupForm(Form):
                         validators=[Required('You must agree to not agree!')])
 
     submit = SubmitField(u'Signup')
+
+class LoginForm(Form):
+    email = TextField(u'Your email address', validators=[Email()])
+    password = TextField(u'Password', validators=[Required()])
+    submit = SubmitField(u'Signup')

@@ -1,0 +1,18 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+{% block content %}
+   <div class="container">
+      <div class="jumbotron">
+        <h1>Login with your credentials</h1>
+      </div>
+    </div>
+   <div class="col-md-12">
+     {% if request.args.get('legacy') -%}
+       {{wtf.quick_form(form, novalidate=True)}}
+     {%- else -%}
+       {{form|render_form()}}
+     {%- endif %}
+   </div>
+{%- endblock %}
