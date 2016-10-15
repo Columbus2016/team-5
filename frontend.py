@@ -44,14 +44,28 @@ def create_group():
 def user_route():
 
     if request.method == 'GET':
-        id = request.form.get('id')
+
+        if not request.args.get('id'):
+            # incorrect user! Redirect
+            return redirect(url_for('frontend.login_route'))
+
+        id = request.args.get('id')
+        print ("id = " + id)
 
         # vulnerable to sql injection!
-        cursor.execute("SELECT username FROM User WHERE userID='" + id + "'")
+        cursor.execute("SELECT email FROM User WHERE userID='" + id + "'")
+
+        name = cursor.execute("SELECT firstname FROM User WHERE email='" + session.username + "'") + cursor.execute("SELECT lastname FROM User WHERE username='" + session.username + "'")
+        email = cursor.execute("SELECT email FROM User WHERE email='" + session.username + "'")
+        age = cursor.execute("SELECT age FROM User WHERE email='" + session.username + "'")
+        gender = cursor.execute("SELECT gender FROM User WHERE email='" + session.username + "'")
+        community = cursor.execute("SELECT diagnosis FROM User WHERE email='" + session.username + "'")
+        group = cursor.execute("SELECT community FROM User WHERE email='" + session.username + "'")
+        bio = cursor.execute("SELECT bio FROM User WHERE email='" + session.username + "'")
 
         username = cursor.fetchone()
-        if 'username' in session and session['username'] == username:
-            return render_template('user.html')
+        #if 'username' in session and session['username'] == username:
+        return render_template('user.html')
 
     elif request.method == 'POST':
         id = request.form.get('id')
@@ -72,7 +86,7 @@ def user_route():
 
 
     # incorrect user! Redirect
-    return redirect(url_for('login.route'))
+    return redirect(url_for('frontend.login_route'))
 
 
 # Shows a long signup form, demonstrating form rendering.
