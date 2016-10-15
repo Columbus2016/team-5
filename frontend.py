@@ -8,6 +8,8 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session, request
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
 from flask import Flask, render_template, request
+from flask.ext.wtf import Form
+from wtforms import Form, TextField, BooleanField, PasswordField, TextAreaField, validators
 
 from .forms import *
 from .nav import nav
@@ -16,7 +18,7 @@ import hashlib
 from extensions import db
 
 frontend = Blueprint('frontend', __name__)
-#cursor = db.cursor()
+cursor = db.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -74,47 +76,27 @@ def user_route():
 def signup_route():
     form = SignupForm(request.form)
 
-    if request.method == 'POST' and form.validate():
-        print form.firstname.data
-        print form.lastname.data
-        print form.email.data
-        print form.zipcode.data
-        print form.age.data
-        print form.diagnosis.data
-        print form.community.data
-        print form.private.data
-        print form.searchable.data
-        print form.bio.data
-        print form.gender.data
-        print "HI"
-
-
-
-
-        cursor.execute('INSERT INTO User firstname, lastname, email, location, age, diagnosis, community, private, searchable, bio, gender' +
-                       ' VALUES("' + form.firstname.data + '","' + form.lastname.data + '","' + form.email.data + '",' + form.zipcode.data + ',' + form.age.data + ',"' + form.diagnosis.data + '","' + form.community.data + '",' + form.private.data + ',' + form.searchable.data + ',"' + form.bio.data + '","' + form.gender.data + '" )')
-        return redirect(url_for('.login'))
+    if request.method == 'POST':
+        cursor.execute('INSERT INTO User (firstname, lastname, email, password, location, age, diagnosis, community, bio, gender)' +
+                       ' VALUES("' + form.firstname.data + '","' + form.lastname.data + '","' + form.email.data + '","' + form.password.data + '","'+ form.zipcode.data + '","' + form.age.data + '","' + form.diagnosis.data + '","' + form.community.data + '","' + form.bio.data + '","' + form.gender.data + '")')
+        return redirect(url_for('frontend.login_route'))
 
     return render_template('signup.html', form=form)
 
 @frontend.route('/login', methods=['GET', 'POST'])
 def login_route():
     form = LoginForm()
-    if form.validate_on_submit():
+    if request.method == 'POST' and form.validate():
 
-        # hash password for check against db
-        m = hashlib.md5()
-        m.update(form.password)
-        hashed_pass = m.hexdigest()
-
-        if hashed_pass == cursor.exicute("SELECT password FROM User WHERE email='" + form.email + "'").fetchone():
+        if form.password == cursor.exicute("SELECT password FROM User WHERE email='" + form.email + "'").fetchone():
 
             # login was good! Congrats
             flash('Logged in successfully.')
             session['username'] = form.email.data
-            return redirect(url_for('.messages'))
+            print session['username']
+            return redirect(url_for('frontend.index'))
 
-    # login was bad :(
+
     return render_template('login.html', form=form)
 
 
