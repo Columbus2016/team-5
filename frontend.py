@@ -57,6 +57,8 @@ def user_route():
 
         if 'username' in session:
 
+            cursor.execute("SELECT userID FROM User WHERE email='" + session['username'] + "'")
+            userID = cursor.fetchone()['userID']
             cursor.execute("SELECT firstname FROM User WHERE email='" + session['username'] + "'")
             firstname = cursor.fetchone()['firstname']
             cursor.execute("SELECT lastname FROM User WHERE email='" + session['username'] + "'")
@@ -75,6 +77,7 @@ def user_route():
             bio = cursor.fetchone()['bio']
 
             options = {
+                'userID': userID,
                 'name': firstname + ' ' + lastname,
                 'email': email,
                 'age': age,
