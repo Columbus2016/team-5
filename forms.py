@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, RadioField, SelectField, SubmitField
+from wtforms import StringField, PasswordField, RadioField, SelectField, SubmitField, HiddenField
 
 class SignupForm(Form):
     firstname = StringField(u'First Name')
