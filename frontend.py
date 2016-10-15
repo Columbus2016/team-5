@@ -5,9 +5,9 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template, flash, redirect, url_for, session, request
+from flask import Blueprint,  flash, redirect, url_for, session
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
-from flask import Flask, render_template, request
+from flask import render_template, request
 
 from .forms import *
 from .nav import nav
