@@ -12,15 +12,15 @@
 
 
             <!-- Bootstrap Core CSS -->
-    <link href="https://blackrockdigital.github.io/startbootstrap-grayscale/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="https://blackrockdigital.github.io/startbootstrap-grayscale/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="https://blackrockdigital.github.io/startbootstrap-grayscale/css/grayscale.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/grayscale.min.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,17 +57,7 @@
                     <li style="color:lightpink;">
                         <a class="page-scroll" href={{ url_for('frontend.login_route') }}>Login</a>
                     </li>
-<<<<<<< HEAD
                     <li style="color:lightpink;">
-=======
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                    <li>
->>>>>>> d6d305341c66c98556ede39ed7e7180b2127166e
                         <a class="page-scroll" href={{ url_for('frontend.signup_route') }}>Sign Up</a>
                     </li>
                 </ul>
