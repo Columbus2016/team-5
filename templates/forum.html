@@ -139,10 +139,10 @@ https://media.licdn.com/media/AAEAAQAAAAAAAAc5AAAAJGMxZDExNTFhLWI1YmQtNDFmZi05NW
           <div class="w3-card-2 w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity"></h6>
-                <form method="POST" action={{url_for('frontend.message_route'}}>
+                <form method="post" action="{{url_for('frontend.message_route')}}">
                     Share your stories, experiences and positive thoughts...<br>
                     <input type="text" class="w3-border w3-padding" name="message">
-                    <button type="button" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> &nbsp;Post</button>
+                    <input type="submit" class="w3-btn w3-theme"></input>
                 </form>
             </div>
           </div>
@@ -151,7 +151,7 @@ https://media.licdn.com/media/AAEAAQAAAAAAAAc5AAAAJGMxZDExNTFhLWI1YmQtNDFmZi05NW
 
         {% for message in message_list %}
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
-        <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <img src="/static/images/sgk_logo1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">1 min</span>
         <h4>{{ message['name'] }}</h4><br>
           <p>{{ message['message'] }}</p>
