@@ -17,6 +17,7 @@ import hashlib
 from extensions import db
 #import MySQLdb as mdb
 #con = mdb.connect('localhost', 'root', 'root', 'team5')
+
 frontend = Blueprint('frontend', __name__)
 cursor = db.cursor()
 

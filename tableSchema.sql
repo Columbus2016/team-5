@@ -1,8 +1,7 @@
-
+drop table User;
 drop table Comments;
 drop table ForumMessages;
 drop table Connections;
-drop table User;
 
 
 create table User
@@ -56,15 +55,17 @@ ALTER TABLE ForumMessages
 ADD PRIMARY KEY (fMessageID);
 
 
-INSERT INTO ForumMessages values("I really like this forum!", 5, 123, '2016-04-07')
-INSERT INTO ForumMessages values("I had a great hike today", 6, 124, '2016-03-07' )
-INSERT INTO ForumMessages values("This group is so supportive!", 7, 123, '2016-08-07' )
-INSERT INTO ForumMessages values("I feel so empowered!", 8, 124, '2016-01-07')
+INSERT INTO ForumMessages values('I really like this forum!', 5, 1, '2016-04-07');
+INSERT INTO ForumMessages values('I had a great hike today', 6, 1, '2016-03-07' );
+INSERT INTO ForumMessages values('This group is so supportive!', 7, 2, '2016-08-07' );
+INSERT INTO ForumMessages values('I feel so empowered!', 8, 2, '2016-01-07');
+
 
 create table Comments 
 (userID int,
 commentText VARCHAR(255),
 fMessageID int);
+
 
 ALTER TABLE Comments
 ADD FOREIGN KEY (userID) REFERENCES User(userID);
@@ -72,5 +73,7 @@ ADD FOREIGN KEY (userID) REFERENCES User(userID);
 ALTER TABLE Comments
 ADD FOREIGN KEY (fMessageID) REFERENCES ForumMessages(fMessageID);
 
-INSERT INTO Comments values(124, "Great Post!", 5)
-INSERT INTO Comments values(123, "Me too!", 6)
+INSERT INTO Comments values(1, 'Great Post!', 5);
+INSERT INTO Comments values(2, 'Me too!', 6);
+
+
