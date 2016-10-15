@@ -139,22 +139,20 @@ def login_route():
 @frontend.route('/messages', methods=['GET', 'POST'])
 def message_route():
     if request.method == 'POST':
-        userID = request.form.get('id')
-        message = request.form.get('message')
-        isPublic = request.form.get('isPublic')
-
-        cursor.execute("SELECT * FROM User WHERE userID='" + userID + "'")
-        if cursor.fetchone() != 1:
+        if 'username' not in session:
             return redirect(url_for('frontend.login_route'))
+        else:
+            username = session['username']
+            message = request.form.get('message')
 
-        # user number exits, so continue with the POST
-        messageID = abs(hash(message))
+            # user number exits, so continue with the POST
+            messageID = abs(hash(message))
 
-        if not isPublic:
-            userID = -1
+            cursor.execute('SELECT userID from User where email = "' + session['username'] + '"')
+            userID = cursor.fetchone()['userID']
 
-
-        cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
+            cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
+            return redirect(url_for('frontend.messages'))
 
 
     message_list = []
