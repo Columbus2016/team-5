@@ -52,8 +52,8 @@ def signup_route():
 
     return render_template('signup.html', form=form)
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@frontend.route('/login', methods=['GET', 'POST'])
+def login_route():
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
