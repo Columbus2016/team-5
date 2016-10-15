@@ -11,8 +11,24 @@ class SignupForm(Form):
     birthday = DateField(u'Your birthday', validators=[Required()])
     gender = RadioField(u'Gender', choices=[('Male', 'male'), ('Female', 'female')], validators=[Required()])
     zipcode = IntegerField(u'Zip Code (so we can connect you with nearby users!)', validators=[Required()])
-    community = SelectField(u'Cancer Community', choices=[('Survivor', 'survivor'), ('Co-Survivor', 'cosurvivor'), ('Metastatic', 'metastatic')])
+    community = SelectField(u'Cancer Community', choices=[('survivor', 'Survivor'), ('cosurvivor', 'Co-Survivor'), ('metastatic', 'Metastatic')])
+    diagnosis = SelectField(u'Cancer Diagnosis', choices=[('none', 'None'),
+                                                          ('DCIS', 'Ductal Carcinoma In Situ'),
+                                                          ('IDC', 'Invasive Ductal Carcinoma'),
+                                                          ('tubular', 'Tubular Carcinoma of the Breast'),
+                                                          ('medullary', 'Medullary Carcinoma of the Breast'),
+                                                          ('mucinous', 'Mucinous Carcinoma of the Breast'),
+                                                          ('papillary', 'Papillary Carcinoma of the Breast'),
+                                                            ('cribriform', 'Cribriform Carcinoma of the Breast'),
+                                                            ('ILC', 'Invasive Lobular Carcinoma'),
+                                                            ('inflammatory', 'Inflammatory Breast Cancer'),
+                                                            ('LCIS', 'Lobular Carcinoma In Situ'),
+                                                            ('male', 'Male Breast Cancer'),
+                                                            ('paget', "Paget's Disease of the Nipple"),
+                                                            ('phyllodes', 'Phyllodes Tumors of the Breast'),
+                                                            ('metastatic', 'Recurrent & Metastatic Breast Cancer'),
 
+                                                          ])
     sample_file = FileField(u'Upload a Profile Picture!')
 
     eula = BooleanField(u'I agree to let my personal data be released for research purposes',

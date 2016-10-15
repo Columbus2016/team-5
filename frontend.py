@@ -5,7 +5,7 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template, flash, redirect, url_for, session
+from flask import Blueprint, render_template, flash, redirect, url_for, session, request
 from flask_bootstrap import __version__ as FLASK_BOOTSTRAP_VERSION
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
 from flask.ext.login import LoginManager, UserMixin, login_required
@@ -14,7 +14,10 @@ from markupsafe import escape
 from .forms import *
 from .nav import nav
 
+from extensions import db
+
 frontend = Blueprint('frontend', __name__)
+cursor = db.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -32,7 +35,7 @@ nav.register_element('frontend_top', Navbar(
 def index():
     return render_template('index.html')
 
-@frontend.route('/user')
+@frontend.route('/user', methods=('GET', 'POST'))
 def user_route():
     return render_template('user.html')
 
@@ -42,7 +45,9 @@ def signup_route():
     form = SignupForm()
 
     if form.validate_on_submit():
-        return redirect(url_for('.index'))
+        cursor.execute('INSERT INTO User firstname, lastname, email, location, age, diagnosis, community, private, searchable, bio' +
+                       ' VALUES()')
+        return redirect(url_for('.login'))
 
     return render_template('signup.html', form=form)
 

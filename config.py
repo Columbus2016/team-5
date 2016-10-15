@@ -3,9 +3,8 @@
 
 env = dict(
     host='localhost',
-    user='group46',
-    password='gdp46',
-    db='group46db',
-    port=5125
+    user='root',
+    password='root',
+    db='team5'
 )
 
