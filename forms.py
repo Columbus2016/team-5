@@ -9,7 +9,6 @@ class SignupForm(Form):
     password = TextField(u'Password', validators=[Required()])
     email = TextField(u'Your email address', validators=[Email()])
     birthday = DateField(u'Your birthday')
-    usertype = SelectField(u'First Name', validators=[Required()])
 
     a_float = FloatField(u'A floating point number')
     a_decimal = DecimalField(u'Another floating point number')
