@@ -5,13 +5,13 @@
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
 
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, session
 from flask_bootstrap import __version__ as FLASK_BOOTSTRAP_VERSION
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
 from flask.ext.login import LoginManager, UserMixin, login_required
 from markupsafe import escape
 
-from .forms import SignupForm
+from .forms import *
 from .nav import nav
 
 frontend = Blueprint('frontend', __name__)
@@ -45,7 +45,7 @@ def signup_route():
         # Note that the default flashed messages rendering allows HTML, so
         # we need to escape things if we input user values:
         flash('Hello, {}. You have successfully signed up'
-              .format(escape(form.name.data)))
+              .format(escape(form.email.data)))
 
         # In a real application, you may wish to avoid this tedious redirect.
         return redirect(url_for('.index'))
@@ -59,18 +59,10 @@ def login():
     # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
     if form.validate_on_submit():
-        # Login and validate the user.
-        # user should be an instance of your `User` class
-        login_user(user)
 
         flash('Logged in successfully.')
+        session['username'] = form.email.data
 
-        next = flask.request.args.get('next')
-        # next_is_valid should check if the user has valid
-        # permission to access the `next` url
-        if not next_is_valid(next):
-            return abort(400)
-
-        return redirect(next or flask.url_for('index'))
+        return redirect(url_for('.index'))
     return render_template('login.html', form=form)
 
