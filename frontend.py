@@ -13,10 +13,11 @@ from .forms import *
 from .nav import nav
 import hashlib
 
-from extensions import db
-
+#from extensions import db
+import MySQLdb as mdb
+con = mdb.connect('localhost', 'root', 'root', 'team5')
 frontend = Blueprint('frontend', __name__)
-#cursor = db.cursor()
+cursor = con.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -33,6 +34,11 @@ nav.register_element('frontend_top', Navbar(
 @frontend.route('/')
 def index():
     return render_template('index.html')
+
+
+@frontend.route('/createGroup')
+def create_group():
+    return render_template('creategroup.html')
 
 @frontend.route('/user', methods=('GET', 'POST'))
 def user_route():
@@ -74,7 +80,9 @@ def user_route():
 def signup_route():
     form = SignupForm(request.form)
 
+
     if request.method == 'POST' and form.validate():
+        '''
         print form.firstname.data
         print form.lastname.data
         print form.email.data
@@ -87,6 +95,9 @@ def signup_route():
         print form.bio.data
         print form.gender.data
         print "HI"
+
+        '''
+
 
 
 
