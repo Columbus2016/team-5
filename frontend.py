@@ -16,7 +16,7 @@ import hashlib
 from extensions import db
 
 frontend = Blueprint('frontend', __name__)
-cursor = db.cursor()
+#cursor = db.cursor()
 
 # We're adding a navbar as well through flask-navbar. In our example, the
 # navbar has an usual amount of Link-Elements, more commonly you will have a
@@ -36,7 +36,38 @@ def index():
 
 @frontend.route('/user', methods=('GET', 'POST'))
 def user_route():
-    return render_template('user.html')
+
+    if request.method == 'GET':
+        id = request.form.get('id')
+
+        # vulnerable to sql injection!
+        cursor.execute("SELECT username FROM User WHERE userID='" + id + "'")
+
+        username = cursor.fetchone()
+        if 'username' in session and session['username'] == username:
+            return render_template('user.html')
+
+    elif request.method == 'POST':
+        id = request.form.get('id')
+        field = request.form.get('field')
+        data = request.form.get('data')
+
+        # vulnerable to sql injection!
+        cursor.execute("SELECT username FROM User WHERE userID='" + id + "'")
+
+        username = cursor.fetchone()
+        if 'username' in session and session['username'] == username:
+
+            # update info
+            cursor.execute("UPDATE User SET " + field + "= '" + data + "' WHERE userID='" + id + "'")
+
+            #return new user page
+            return render_template('user.html')
+
+
+    # incorrect user! Redirect
+    return redirect(url_for('login.route'))
+
 
 # Shows a long signup form, demonstrating form rendering.
 @frontend.route('/signup', methods=('GET', 'POST'))
@@ -76,7 +107,7 @@ def login_route():
         m.update(form.password)
         hashed_pass = m.hexdigest()
 
-        if hashed_pass == cursor.exicute("SELECT * FROM User WHERE email='" + form.email + "'").fetchone():
+        if hashed_pass == cursor.exicute("SELECT password FROM User WHERE email='" + form.email + "'").fetchone():
 
             # login was good! Congrats
             flash('Logged in successfully.')
