@@ -21,7 +21,15 @@ cursor = db.cursor()
 nav.register_element('frontend_top', Navbar(
     View('Home', '.index'),
     View('Signup', '.signup_route'),
-    View('Login', '.login_route')
+    View('Login', '.login_route'),
+
+))
+
+nav.register_element('frontend_top_logged', Navbar(
+    View('Home', '.index'),
+    View('Messages', '.message_route'),
+    View('Profile', '.user_route'),
+
 ))
 
 
@@ -29,6 +37,7 @@ nav.register_element('frontend_top', Navbar(
 # "templates/index.html" documentation for more details.
 @frontend.route('/')
 def index():
+    session.clear()
     return render_template('index.html')
 
 
@@ -134,7 +143,7 @@ def login_route():
 
 @frontend.route('/messages', methods=['GET', 'POST'])
 def message_route():
-    return render_template('forum2.html')
+    return render_template('forum3.html')
 
 
 
