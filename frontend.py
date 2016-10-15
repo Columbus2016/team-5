@@ -144,29 +144,27 @@ def login_route():
 @frontend.route('/messages', methods=['GET', 'POST'])
 def message_route():
     if request.method == 'POST':
-        userID = request.form.get('id')
-        message = request.form.get('message')
-        isPublic = request.form.get('isPublic')
-
-        cursor.execute("SELECT * FROM User WHERE userID='" + userID + "'")
-        if cursor.fetchone() != 1:
+        if 'username' not in session:
             return redirect(url_for('frontend.login_route'))
+        else:
+            username = session['username']
+            message = request.form.get('message')
 
-        # user number exits, so continue with the POST
-        messageID = abs(hash(message))
+            # user number exits, so continue with the POST
+            messageID = abs(hash(message))
 
-        if not isPublic:
-            userID = -1
+            cursor.execute('SELECT userID from User where email = "' + session['username'] + '"')
+            userID = cursor.fetchone()['userID']
 
+            cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
+            return redirect(url_for('frontend.messages'))
 
-        cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
-
-
+    cursor.execute("SELECT * FROM ForumMessages WHERE '1=1'")
     message_list = []
     db_values = cursor.fetchall()
     for message in db_values:
-        cursor.execute("SELECT firstname FROM User WHERE userID =" + message['userID'])
-        name = cursor.fetchone()
+        cursor.execute("SELECT firstname FROM User WHERE userID =" + str(message['userID']))
+        name = cursor.fetchone()['firstname']
         message_list.append({
             'message': message['fMessageText'],
             'message_ID': message['fMessageID'],
