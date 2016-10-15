@@ -32,6 +32,9 @@ nav.register_element('frontend_top', Navbar(
 def index():
     return render_template('index.html')
 
+@frontend.route('/user')
+def user_route():
+    return render_template('user.html')
 
 # Shows a long signup form, demonstrating form rendering.
 @frontend.route('/signup', methods=('GET', 'POST'))
