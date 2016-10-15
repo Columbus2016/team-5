@@ -1,7 +1,5 @@
-from flask.ext.wtf import Form
-from wtforms.fields import *
-from wtforms.validators import Required, Email, InputRequired
-from wtforms import TextField, TextAreaField, SubmitField, validators, ValidationError, IntegerField, BooleanField
+from flask_wtf import Form
+from wtforms import StringField, PasswordField, RadioField, SelectField, SubmitField
 
 class SignupForm(Form):
     firstname = StringField(u'First Name')
@@ -34,6 +32,6 @@ class SignupForm(Form):
     submit = SubmitField(u'Signup')
 
 class LoginForm(Form):
-    email = StringField(u'Your email address', validators=[Email()])
-    password = PasswordField(u'Password', validators=[InputRequired()])
-    submit = SubmitField(u'Signup')
+    email = StringField(u'Your email address')
+    password = PasswordField(u'Password')
+    submit = SubmitField(u'Login')

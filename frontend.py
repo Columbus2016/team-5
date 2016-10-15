@@ -8,16 +8,10 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session, request
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
 from flask import Flask, render_template, request
-from flask.ext.wtf import Form
-from wtforms import Form, TextField, BooleanField, PasswordField, TextAreaField, validators
 
 from .forms import *
 from .nav import nav
-import hashlib
 from extensions import db
-#import MySQLdb as mdb
-#con = mdb.connect('localhost', 'root', 'root', 'team5')
-
 frontend = Blueprint('frontend', __name__)
 cursor = db.cursor()
 
@@ -47,29 +41,41 @@ def user_route():
 
     if request.method == 'GET':
 
-        if not request.args.get('id'):
+        if 'username' not in session:
             # incorrect user! Redirect
             return redirect(url_for('frontend.login_route'))
 
-        id = request.args.get('id')
-        print ("id = " + id)
 
-        # vulnerable to sql injection!
-        cursor.execute("SELECT email FROM User WHERE userID='" + id + "'")
-        username = cursor.fetchone()
-        print (username)
+        if 'username' in session:
 
-        if 'username' in session and session['username'] == username:
+            cursor.execute("SELECT firstname FROM User WHERE email='" + session['username'] + "'")
+            firstname = cursor.fetchone()['firstname']
+            cursor.execute("SELECT lastname FROM User WHERE email='" + session['username'] + "'")
+            lastname = cursor.fetchone()['lastname']
+            cursor.execute("SELECT email FROM User WHERE email='" + session['username'] + "'")
+            email = cursor.fetchone()['email']
+            cursor.execute("SELECT age FROM User WHERE email='" + session['username'] + "'")
+            age = cursor.fetchone()['age']
+            cursor.execute("SELECT gender FROM User WHERE email='" + session['username'] + "'")
+            gender = cursor.fetchone()['gender']
+            cursor.execute("SELECT diagnosis FROM User WHERE email='" + session['username'] + "'")
+            diagnosis = cursor.fetchone()['diagnosis']
+            cursor.execute("SELECT community FROM User WHERE email='" + session['username'] + "'")
+            community = cursor.fetchone()['community']
+            cursor.execute("SELECT bio FROM User WHERE email='" + session['username'] + "'")
+            bio = cursor.fetchone()['bio']
 
-            name = cursor.execute("SELECT firstname FROM User WHERE email='" + session['username'] + "'") + cursor.execute("SELECT lastname FROM User WHERE username='" + session['username'] + "'")
-            email = cursor.execute("SELECT email FROM User WHERE email='" + session['username'] + "'")
-            age = cursor.execute("SELECT age FROM User WHERE email='" + session['username'] + "'")
-            gender = cursor.execute("SELECT gender FROM User WHERE email='" + session['username'] + "'")
-            community = cursor.execute("SELECT diagnosis FROM User WHERE email='" + session['username'] + "'")
-            group = cursor.execute("SELECT community FROM User WHERE email='" + session['username'] + "'")
-            bio = cursor.execute("SELECT bio FROM User WHERE email='" + session['username'] + "'")
+            options = {
+                'name': firstname + ' ' + lastname,
+                'email': email,
+                'age': age,
+                'gender': gender,
+                'community': community,
+                'group': diagnosis,
+                'bio': bio,
+            }
 
-            return render_template('user.html')
+            return render_template('user.html', **options)
 
     elif request.method == 'POST':
         id = request.form.get('id')
@@ -136,18 +142,25 @@ def signup_route():
 @frontend.route('/login', methods=['GET', 'POST'])
 def login_route():
     form = LoginForm()
-    if request.method == 'POST' and form.validate():
-
-        if form.password == cursor.execute('SELECT password FROM User WHERE email="' + form.email.data + '"').fetchone():
+    if request.method == 'POST':
+        cursor.execute('SELECT password FROM User WHERE email="' + form.email.data + '"')
+        password = cursor.fetchone()['password']
+        if form.password.data == password:
 
             # login was good! Congrats
             flash('Logged in successfully.')
             session['username'] = form.email.data
-            return redirect(url_for('frontend.index'))
+            return redirect(url_for('frontend.user_route'))
 
 
     print ("Login not validated!")
     return render_template('login.html', form=form)
+
+@frontend.route('/messages', methods=['GET', 'POST'])
+def message_route():
+    return render_template('forum2.html')
+
+
 
 
 
