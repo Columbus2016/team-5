@@ -110,6 +110,30 @@ def user_route():
 
 @frontend.route('/forum', methods=('GET', 'POST'))
 def forum_route():
+    if request.method == 'POST':
+        userID = request.form.get('id')
+        message = request.form.get('message')
+        isPublic = request.form.get('isPublic')
+
+        cursor.execute("SELECT * FROM User WHERE userID='" + userID + "'")
+        if cursor.fetchone() != 1:
+            return redirect(url_for('frontend.login_route'))
+
+        # user number exits, so continue with the POST
+        messageID = abs(hash(message))
+
+        if not isPublic:
+            userID = -1
+
+
+        cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
+
+
+    # need to add messages to options in the form of a list and pass it to forum.html
+    options = {
+        'messages': "nada"
+    }
+
     return render_template('forum.html')
 
 # Shows a long signup form, demonstrating form rendering.
