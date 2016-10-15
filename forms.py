@@ -4,10 +4,12 @@ from wtforms.validators import Required, Email
 
 
 class SignupForm(Form):
-    name = TextField(u'Your name', validators=[Required()])
-    password = TextField(u'Your favorite password', validators=[Required()])
+    firstname = TextField(u'First Name', validators=[Required()])
+    lastname = TextField(u'Last Name', validators=[Required()])
+    password = TextField(u'Password', validators=[Required()])
     email = TextField(u'Your email address', validators=[Email()])
     birthday = DateField(u'Your birthday')
+    usertype = SelectField(u'First Name', validators=[Required()])
 
     a_float = FloatField(u'A floating point number')
     a_decimal = DecimalField(u'Another floating point number')
@@ -16,7 +18,7 @@ class SignupForm(Form):
     now = DateTimeField(u'Current time',
                         description='...for no particular reason')
     sample_file = FileField(u'Your favorite file')
-    eula = BooleanField(u'I did not read the terms and conditions',
+    eula = BooleanField(u'I agree to let my personal data be released for research purposes',
                         validators=[Required('You must agree to not agree!')])
 
     submit = SubmitField(u'Signup')
