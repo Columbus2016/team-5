@@ -40,11 +40,12 @@ def index():
     session.clear()
     return render_template('index.html')
 
-
+# This was a goal of our goup's - to have a page where users could create groups for people of similar interests
 @frontend.route('/createGroup')
 def create_group():
     return render_template('creategroup.html')
 
+# Directs the user to their user page
 @frontend.route('/user', methods=('GET', 'POST'))
 def user_route():
 
@@ -89,6 +90,7 @@ def user_route():
 
             return render_template('user.html', **options)
 
+    # never tested fully, intended for the user to change their information
     elif request.method == 'POST':
         id = request.form.get('id')
         field = request.form.get('field')
