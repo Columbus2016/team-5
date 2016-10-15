@@ -151,13 +151,13 @@ def message_route():
             message = request.form.get('message')
 
             # user number exits, so continue with the POST
-            messageID = abs(hash(message))
+            messageID = str(abs(hash(message)))[:9]
 
             cursor.execute('SELECT userID from User where email = "' + session['username'] + '"')
             userID = cursor.fetchone()['userID']
 
-            cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', " + messageID + ", " + userID + ")")
-            return redirect(url_for('frontend.messages'))
+            cursor.execute("INSERT INTO ForumMessages (fMessageText, fMessageID, userID) VALUES ('" + message + "', '" + messageID + "', '" + str(userID) + "')")
+            return redirect(url_for('frontend.message_route'))
 
     cursor.execute("SELECT * FROM ForumMessages WHERE '1=1'")
     message_list = []
