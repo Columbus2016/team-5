@@ -16,7 +16,7 @@ from .nav import nav
 import hashlib
 
 import MySQLdb as mdb
-con = mdb.connect('localhost', 'root', 'root', 'team5')
+con = mdb.connect('localhost', 'root', 'root', 'boo')
 frontend = Blueprint('frontend', __name__)
 cursor = con.cursor()
 
