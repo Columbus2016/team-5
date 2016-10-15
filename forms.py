@@ -4,13 +4,13 @@ from wtforms.validators import Required, Email
 
 
 class SignupForm(Form):
-    firstname = TextField(u'First Name', validators=[Required()])
-    lastname = TextField(u'Last Name', validators=[Required()])
-    password = PasswordField(u'Password', validators=[Required()])
-    email = TextField(u'Your email address', validators=[Email()])
-    birthday = DateField(u'Your birthday', validators=[Required()])
-    gender = RadioField(u'Gender', choices=[('Male', 'male'), ('Female', 'female')], validators=[Required()])
-    zipcode = IntegerField(u'Zip Code (so we can connect you with nearby users!)', validators=[Required()])
+    firstname = StringField(u'First Name')
+    lastname = StringField(u'Last Name')
+    password = PasswordField(u'Password')
+    email = StringField(u'Your email address')
+    age = IntegerField(u'Age')
+    gender = RadioField(u'Gender', choices=[('Male', 'male'), ('Female', 'female')])
+    zipcode = IntegerField(u'Zip Code (so we can connect you with nearby users!)')
     community = SelectField(u'Cancer Community', choices=[('survivor', 'Survivor'), ('cosurvivor', 'Co-Survivor'), ('metastatic', 'Metastatic')])
     diagnosis = SelectField(u'Cancer Diagnosis', choices=[('none', 'None'),
                                                           ('DCIS', 'Ductal Carcinoma In Situ'),
@@ -29,14 +29,17 @@ class SignupForm(Form):
                                                             ('metastatic', 'Recurrent & Metastatic Breast Cancer'),
 
                                                           ])
+    bio = StringField(u'Short Bio')
+
     sample_file = FileField(u'Upload a Profile Picture!')
 
-    eula = BooleanField(u'I agree to let my personal data be released for research purposes',
-                        validators=[Required('You must agree to not agree!')])
+    private = BooleanField(u'I agree to let my personal data be released for research purposes',)
+
+    searchable = BooleanField(u'I want to be searchable to other users',)
 
     submit = SubmitField(u'Signup')
 
 class LoginForm(Form):
-    email = TextField(u'Your email address', validators=[Email()])
+    email = StringField(u'Your email address', validators=[Email()])
     password = PasswordField(u'Password', validators=[Required()])
     submit = SubmitField(u'Signup')

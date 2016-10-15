@@ -6,15 +6,12 @@
 # http://flask.pocoo.org/docs/blueprints/
 
 from flask import Blueprint, render_template, flash, redirect, url_for, session, request
-from flask_bootstrap import __version__ as FLASK_BOOTSTRAP_VERSION
 from flask_nav.elements import Navbar, View, Subgroup, Link, Text, Separator
-from flask.ext.login import LoginManager, UserMixin, login_required
-from markupsafe import escape
+from flask import Flask, render_template, request
 
 from .forms import *
 from .nav import nav
 import hashlib
-from extensions import db
 
 from extensions import db
 
@@ -44,11 +41,27 @@ def user_route():
 # Shows a long signup form, demonstrating form rendering.
 @frontend.route('/signup', methods=('GET', 'POST'))
 def signup_route():
-    form = SignupForm()
+    form = SignupForm(request.form)
 
-    if form.validate_on_submit():
-        cursor.execute('INSERT INTO User firstname, lastname, email, location, age, diagnosis, community, private, searchable, bio' +
-                       ' VALUES()')
+    if request.method == 'POST' and form.validate():
+        print form.firstname.data
+        print form.lastname.data
+        print form.email.data
+        print form.zipcode.data
+        print form.age.data
+        print form.diagnosis.data
+        print form.community.data
+        print form.private.data
+        print form.searchable.data
+        print form.bio.data
+        print form.gender.data
+        print "HI"
+
+
+
+
+        cursor.execute('INSERT INTO User firstname, lastname, email, location, age, diagnosis, community, private, searchable, bio, gender' +
+                       ' VALUES("' + form.firstname.data + '","' + form.lastname.data + '","' + form.email.data + '",' + form.zipcode.data + ',' + form.age.data + ',"' + form.diagnosis.data + '","' + form.community.data + '",' + form.private.data + ',' + form.searchable.data + ',"' + form.bio.data + '","' + form.gender.data + '" )')
         return redirect(url_for('.login'))
 
     return render_template('signup.html', form=form)
