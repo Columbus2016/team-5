@@ -10,13 +10,14 @@
     <meta name="author" content="">
 
 
-
-            <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
@@ -35,124 +36,156 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <a href="https://youtu.be/dJzYJXo6WZQ"><i class="fa fa-play-circle"></i> <span class="light">Watch</span>
-                    </a>
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">
+                <a href="https://youtu.be/dJzYJXo6WZQ"><i class="fa fa-play-circle"></i> <span
+                        class="light">Watch</span>
                 </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li style="color:lightpink;">
-                        <a class="page-scroll" href={{ url_for('frontend.login_route') }}>Login</a>
-                    </li>
-                    <li style="color:lightpink;">
-                        <a class="page-scroll" href={{ url_for('frontend.signup_route') }}>Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+            </a>
         </div>
-        <!-- /.container -->
-    </nav>
 
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">
-                            <div align="center" style="color:lightpink;">
-  Komen Connect
-</div>
-                        </h1>
-                        <p class="intro-text" style="color:lightpink;">
-  Connect, Support, and Thrive</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
-                    </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li style="color:lightpink;">
+                    <a class="page-scroll" href={{ url_for('frontend.login_route') }}>Login</a>
+                </li>
+                <li style="color:lightpink;">
+                    <a class="page-scroll" href={{ url_for('frontend.signup_route') }}>Sign Up</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Intro Header -->
+<header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">
+                        <div align="center" style="color:lightpink;">
+                            Komen Connect
+                        </div>
+                    </h1>
+                    <p class="intro-text" style="color:lightpink;">
+                        Connect, Support, and Thrive</p>
+                    <a href="#about" class="btn btn-circle page-scroll">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="container content-section text-center">
-        <div class="row">
-            <div style="color:lightpink"; class="col-lg-8 col-lg-offset-2">
-                <h2>About Komen Connect</h2>
-                <p>Komen Connect is a project created at the Code for Good event in Columbus, OH (October 14-15, 2016). We worked with the <a href="http://ww5.komen.org/">Susan G. Komen</a> group. Check out our github repo below! </p>
+<!-- About Section -->
+<section id="about" class="container content-section text-center">
+    <div class="row">
+        <div style="color:lightpink" ; class="col-lg-8 col-lg-offset-2">
+            <h2>About Komen Connect</h2>
+            <p>Komen Connect is a project created at the Code for Good event in Columbus, OH (October
+                14-15, 2016). We worked with the <a href="http://ww5.komen.org/">Susan G. Komen</a> group. Check out our
+                github repo below! </p>
 
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://github.com/Columbus2016/team-5" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                </ul>
+            <ul class="list-inline banner-social-buttons">
+                <li>
+                    <a href="https://github.com/Columbus2016/team-5" class="btn btn-default btn-lg"><i
+                            class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- IOS Section -->
+<section class="container content-section text-center">
+    <div class="row">
+        <div style="color:lightpink" ; class="col-lg-8 col-lg-offset-2">
+            <div class="image123">
+                <div class="imgContainer">
+                    <img style="float: left; padding-left: 40px;" src="static/images/ios3.png" height="450" width="300"/>
+                    <p>IOS Landing</p>
+                </div>
+                <div class="imgContainer">
+                    <img style="float: left; padding-left: 40px;" class="middle-img" src="static/images/ios2.png" height="450" width="300"/>
+                    <p>IOS Menus</p>
+                </div>
+                <div class="imgContainer">
+                    <img style="float: left; padding-left: 40px;" src="static/images/ios1.png" height="450" width="300"/>
+                    <p>IOS Connect</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Susan G. Komen</h2>
-                <p>Connect with Susan G. Komen on social media. Start your journey today with Komen’s network of breast cancer survivors, supporters, and friends.</p>
-                <p><a href="mailto:helpline@komen.org">helpline@komen.org</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/susangkomen" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/SusanGKomen" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.pinterest.com/susangkomen/" class="btn btn-default btn-lg"><i class="fa fa-pinterest fa-fw"></i> <span class="network-name">Pinterest</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/susangkomen/" class="btn btn-default btn-lg"><i class="fa fa-instagram fa-fw"></i> <span class="network-name">Instagram</span></a>
-                    </li>
-                </ul>
-            </div>
+<!-- Contact Section -->
+<section id="contact" class="container content-section text-center">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <h2>Contact Susan G. Komen</h2>
+            <p>Connect with Susan G. Komen on social media. Start your journey today with Komen’s network of breast
+                cancer survivors, supporters, and friends.</p>
+            <p><a href="mailto:helpline@komen.org">helpline@komen.org</a>
+            </p>
+            <ul class="list-inline banner-social-buttons">
+                <li>
+                    <a href="https://twitter.com/susangkomen" class="btn btn-default btn-lg"><i
+                            class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/SusanGKomen" class="btn btn-default btn-lg"><i
+                            class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                </li>
+                <li>
+                    <a href="https://www.pinterest.com/susangkomen/" class="btn btn-default btn-lg"><i
+                            class="fa fa-pinterest fa-fw"></i> <span class="network-name">Pinterest</span></a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/susangkomen/" class="btn btn-default btn-lg"><i
+                            class="fa fa-instagram fa-fw"></i> <span class="network-name">Instagram</span></a>
+                </li>
+            </ul>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; Komen Connect 2016</p>
-        </div>
-    </footer>
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <p>Copyright &copy; Komen Connect 2016</p>
+    </div>
+</footer>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="js/grayscale.min.js"></script>
+<!-- Theme JavaScript -->
+<script src="js/grayscale.min.js"></script>
 
 </body>
 
