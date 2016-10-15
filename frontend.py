@@ -13,7 +13,7 @@ from .forms import *
 from .nav import nav
 import hashlib
 
-from extensions import db
+#from extensions import db
 
 frontend = Blueprint('frontend', __name__)
 #cursor = db.cursor()
@@ -75,18 +75,18 @@ def signup_route():
     form = SignupForm(request.form)
 
     if request.method == 'POST' and form.validate():
-        print form.firstname.data
-        print form.lastname.data
-        print form.email.data
-        print form.zipcode.data
-        print form.age.data
-        print form.diagnosis.data
-        print form.community.data
-        print form.private.data
-        print form.searchable.data
-        print form.bio.data
-        print form.gender.data
-        print "HI"
+        print (form.firstname.data)
+        print (form.lastname.data)
+        print (form.email.data)
+        print (form.zipcode.data)
+        print (form.age.data)
+        print (form.diagnosis.data)
+        print (form.community.data)
+        print (form.private.data)
+        print (form.searchable.data)
+        print (form.bio.data)
+        print (form.gender.data)
+        print ("HI")
 
 
 
